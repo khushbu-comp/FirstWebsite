@@ -2,8 +2,47 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Hello new page</title>
+    <script src="Scripts/jquery-1.8.2.min.js"></script>
+    <style type="text/css">
+        .container
+        {
+            padding: 400px 200px; /* This gives our headings a bit of breathing room */
+        }
+
+        .js-background-1
+        {
+            background: transparent url(Images/background1.png) center 0 no-repeat;
+        }
+
+        .js-background-2
+        {
+            background: transparent url(Images/background2.png) center 0 no-repeat;
+        }
+    </style>
 </head>
 <body>
+    <div class="js-background-1 container">
+        <h2>The first box!</h2>
+    </div>
+    <div class="js-background-2 container">
+        <h2>The second box!</h2>
+    </div>
+    <script>
+        var $window = $(window);
+        var velocity = 0.5;
 
+        function update() {
+            var pos = $window.scrollTop();
+
+            $('.container').each(function() {
+                var $element = $(this);
+                var height = $element.height();
+
+                $(this).css('backgroundPosition', '50% ' + Math.round(height - pos) * velocity + 'px');
+            });
+        }
+        
+        $window.bind('scroll', update);
+    </script>
 </body>
 </html>
