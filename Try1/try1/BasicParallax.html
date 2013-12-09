@@ -7,6 +7,7 @@
         .container
         {
             padding: 400px 200px; /* This gives our headings a bit of breathing room */
+            border: 1px grey solid;
         }
 
         .js-background-1
@@ -21,16 +22,17 @@
     </style>
 </head>
 <body>
-    <div style="position:fixed; left:10px; top:10px;">Currrent position: <span id="curpos"></span></div style="position:fixed; left:10px; top:10px;">
+    <div style="position:fixed; left:10px; top:10px;">Currrent position: <span id="curpos"></span></div>
+    <br/><br/><br/><br/><br/><br/><br/>
     <div class="js-background-1 container">
-        <h2>The first box!</h2> <span></span>
+        <h2>The first box!</h2> <span style="left:10px; top:25px; position:fixed"></span>
     </div>
     <div class="js-background-2 container">
-        <h2>The second box!</h2>  <span></span>
+        <h2>The second box!</h2>  <span style="left:10px; top:40px; position:fixed"></span>
     </div>
     <script>
         var $window = $(window);
-        var velocity = 1.5;
+        var velocity = -0.5;
 
         function update() {
             var pos = $window.scrollTop();
@@ -38,15 +40,15 @@
 
             $('.container').each(function() {
                 var $element = $(this);
-                
-                var height = $element.height()+$element.scrollTop();
+
+                var height = $element.scrollTop();
                 isScrolledIntoView(this);
                 //if (isScrolledIntoView(this)) 
                 //    $element.find('span').html('in view');
                 //else
                 //    $element.find('span').html('not in view');
 
-                $(this).css('backgroundPosition', '50% ' + Math.round(height - pos) * velocity + 'px');
+                $(this).css('backgroundPosition', '50% ' + Math.round(pos) * velocity + 'px');
             });
         }
         
@@ -57,10 +59,15 @@
             var elemTop = $(elem).offset().top;
             var elemBottom = elemTop + $(elem).height();
 
-            $(elem).find('span').html('docviewtop:' + docViewTop.toString() + ' ;docviewbottom:' + docViewBottom.toString() + ' ;elemtop:' + elemTop.toString() + ' ;elembottom:' + elemBottom.toString());
+            //$(elem).find('span').html('docviewtop:' + docViewTop.toString() + ' ;docviewbottom:' + docViewBottom.toString() + ' ;elemtop:' + elemTop.toString() + ' ;elembottom:' + elemBottom.toString());
+            var windowHeight = $window.height();
+            var footerTop = $(elem).offset().top - $window.scrollTop();
+            var footerBottom = $(elem).offset().top + $(elem).outerHeight() - $window.scrollTop();
+            //var visibleHeight = Math.min(windowHeight, footerTop) - 80;
+            $(elem).find('span').html('windowHeight:' + windowHeight.toString() + ' ;Top:' + footerTop.toString()+ ' ;bottom:' + footerBottom.toString());
 
             //return ((elemBottom <= docViewBottom) || (elemTop >= docViewTop));
-            return elemBottom >=docViewTop && elemtop <=docViewBottom
+            return elemBottom >= docViewTop && elemtop <= docViewBottom;
         }
         $window.bind('scroll', update);
     </script>
