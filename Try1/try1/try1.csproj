@@ -204,6 +204,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="BasicParallax2.html" />
     <Content Include="Content\themes\base\images\animated-overlay.gif" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -270,6 +271,9 @@
     <Content Include="Global.asax" />
     <Content Include="BasicParallax.html" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
+    <Content Include="Images\background1.png" />
+    <Content Include="Images\background2.png" />
+    <Content Include="Images\Jellyfish.jpg" />
     <Content Include="Scripts\jquery-2.0.3.js" />
     <Content Include="Scripts\jquery-2.0.3.min.js" />
     <Content Include="Scripts\jquery-2.0.3.min.map" />
